@@ -43,8 +43,10 @@ public class MyScheduler {
     private void startJob2(Scheduler scheduler) throws SchedulerException{ 
     	
         JobDetail jobDetail = JobBuilder.newJob(ScheduledJob2.class) .withIdentity("job2", "group1").build();
-        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0/10 * * * * ?"); 
+        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0 0 9 30 6 ?"); //每年的6月30日9点触发
         CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity("trigger2", "group1") .withSchedule(scheduleBuilder).build(); 
         scheduler.scheduleJob(jobDetail,cronTrigger);
     }
+    
+
 }
